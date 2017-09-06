@@ -1,2 +1,2 @@
 # book
-take note for tech 
+take notes for tech & thinking of life ... 
