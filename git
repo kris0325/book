@@ -1,0 +1,92 @@
+# git command
+
+[ ] submodule 子模块
+ git submodule init
+ git submodule update
+
+
+
+
+从远程分支克隆一个版本库
+# git clone <版本库网址>
+ $     git clone http://gitlab.coupang.net/camaro/product-qc.git
+ 
+Git fetch
+取回远程版本库的跟新, 同时在本地创建一个newbranch 分支并切换过去（并建立与远程分支的跟踪关系）
+$ git fetch <远程主机名>   <分支名>
+$ git checkout -b newbranch  <远程主机名> / <分支名>
+git checkout -b dev origin/develop
+ 
+Git  拉取远程分支,并与本地合并（不建立track关系）
+$ git pull <远程主机名>     <远程分支名>:<本地分支名>
+ 
+ 
+Git 手动设置追踪关系
+ 
+//查看本地分支与远程分支之间的追踪关系
+$ git branch -vv
+ 
+//指定本地master分支追踪远程origin/next分支
+# Git branch --track master origin/next
+或者
+# git branch --set-upstream-to  master origin/next
+上面命令指定master分支追踪origin/next分支。
+ 
+ 
+Git push命令用于将本地分支的更新，推送到远程主机（同时建立了跟踪关系）
+$ git push <远程主机> <本地分支名>:<远程分支名>
+# 远程分支名若不存在 ，则会新建一个分支  -->相当于新建远程分支
+#若不指定本地分支，则会删除远程分支    --》相当于push一个空的分支到远程主机
+ 
+ 
+Git  删除本地分支
+# git branch -d  alternate_image
+# git branch -D  alternate_image
+ 
+Git 暂存手上正在写的代码
+# git stash
+
+* git cherry-pick
+ 
+Git 恢复之前暂存的代码
+# git stash ls
+  注：stash@{0} 为stash index
+# git stash apply stash@{0}
+* git stash
+保存当前的工作进度。会分别对暂存区和工作区的状态进行保存
+* git stash save "message..."
+这条命令实际上是第一条 git stash 命令的完整版
+* git stash list
+显示进度列表。此命令显然暗示了git stash 可以多次保存工作进度，并用在恢复时候进行选择
+* git stash pop [--index] [<stash>]
+如果不使用任何参数，会恢复最新保存的工作进度，并将恢复的工作进度从存储的工作进度列表中清除。
+如果提供参数（来自 git stash list 显示的列表），则从该 <stash> 中恢复。恢复完毕也将从进度列表中删除 <stash>。
+选项--index 除了恢复工作区的文件外，还尝试恢复暂存区。
+* git stash apply [--index] [<stash>]
+除了不删除恢复的进度之外，其余和 git stash pop 命令一样
+* git stash clear
+删除所有存储的进度
+ 
+ 
+Git 合并本地分支（将分支 slave 合并到master）
+# git checkout master
+# git merge  slave
+ 
+撤销合并
+# git  merge --abort
+  
+查看本地分支与远程分支的追踪关系
+# git branch -vv
+ 
+修改分支名
+$ git branch -m  <oldbranch>   <newbranch>
+
+* 查看分支合并图
+git log --graph
+
+* 查看commit号
+git log --pretty=oneline --abbrev-commit
+git tag tagname
+或
+git tag tagname commitID
+git show <tag name>
