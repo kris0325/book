@@ -1,0 +1,57 @@
+* login :mysql -h 10.213.0.99 -u summer -p
+
+
+1 增 添加字段
+as:
+ALTER TABLE `postdedup`.`post_dedup_job_histories` ADD COLUMN `directlyMerge`  tinyint(1)  DEFAULT 0 COMMENT 'identify whether directly merge’;
+
+2删
+            delete from postdedup.post_dedup_job_histories where postDedupJobHistoryId >2674;
+
+3 改
+* update tableName set columnName = “ KK“  where columnId = “123”;
+修改字段名 ps ：需要指定字段类型
+ALTER TABLE `postdedup`.`post_dedup_job_histories`  CHANGE status statu varchar(30);
+
+
+* mysql limit 
+limit 语法
+
+SELECT * FROM table LIMIT [offset,] rows | rows OFFSET offset 
+ 
+　　LIMIT 子句可以被用于强制 SELECT 语句返回指定的记录数。LIMIT 接受一个或两个数字参数。参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。初始记录行的偏移量是 0(而不是 1)： 为了与 PostgreSQL 兼容，MySQL 也支持句法： LIMIT # OFFSET #。
+　　
+1
+2
+3
+4
+5
+6
+7
+8
+  mysql> SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15
+ 
+//为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为 -1：
+mysql> SELECT * FROM table LIMIT 95,-1; // 检索记录行 96-last.
+ 
+//如果只给定一个参数，它表示返回最大的记录行数目：
+mysql> SELECT * FROM table LIMIT 5; //检索前 5 个记录行
+//换句话说，LIMIT n 等价于 LIMIT 0,n
+
+
+[x] 排序
+* 随机排序：
+orderBy(MathExpressions.random().asc())
+
+
+[ ] 
+* mysql 不等于的两种写法
+1 <> 
+2 !=
+e.g. 
+SELECT * FROM postdedup.post_dedup_merge_request_items where verifyResult <> 'UNVERIFIED'
+
+-- where verifyResult !='UNVERIFIED'
+
+
+http://www.cnblogs.com/bluecobra/archive/2012/01/11/2318922.html
