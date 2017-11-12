@@ -1,0 +1,31 @@
+
+[ ] 分布式发布发布订阅消息系统kafka架构设计
+[x] http://www.oschina.net/translate/kafka-design?lang=chs&page=1#
+
+http://www.cnblogs.com/cyfonly/p/5954614.html
+
+[ ] 
+http://orchome.com/21
+kafka设计
+* 动机
+* 持久性
+* 效率
+* 生产者
+* 消费者
+* 消息传递保证
+* 副本与leader选择
+* 日志压缩
+* 配额
+
+
+
+
+消息传递保证
+kafka的消息传递保证语义
+1. at most once 最多一次，消息可能丢失
+2. at least once 最少一次，但可能重复发送
+3. exactly once 正好一次
+
+
+
+
