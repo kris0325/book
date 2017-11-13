@@ -1,0 +1,11 @@
+
+[ ] 1 分布式发布发布订阅消息系统kafka架构设计
+Kafka 是一种分布式的，基于发布/订阅的消息系统，其主要设计目标如下：
+* 以时间复杂度为O(1)的方式提供消息持久化能力，即使对TB级以上数据也能保证常数时间的访问性能
+* 高吞吐率。即使在非常廉价的商用机器上也能做到单机支持每秒100k条消息的传输
+1 顺序读写磁盘比随机读写内存效率高
+2 kafka broker 是无状态的，不需要所机制 （因为offet由consumer控制，所以Kafka broker是无状态的，它不需要标记哪些消息被哪些consumer过，不需要通过broker去保证同一个consumer group只有一个consumer能消费某一条消息，因此也就不需要锁机制，这也为Kafka的高吞吐率提供了有力保障。）
+
+
+
+一个典型的kafka集群中包含若干个producer（可以是前端产生的page view,或者是服务器日志等），若干broker（kafka支持水平扩展，一般broker越多，集群吞吐率越高），若干consumer group，以及一个zookeeper集群。kafka通过zookeeper管理集群配置，选举leader，以及在consumer group发生变化时及时进行Rebalance。producer使用push模式将消息发布到broker，consumer使用pull模式从broker消费消息。
